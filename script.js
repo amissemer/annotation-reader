@@ -24,7 +24,7 @@ holder.on('drop', function (e) {
         let fileNameMatch = start.match(/\/([^\/]+)#/);
         let fileName = fileNameMatch? fileNameMatch[1]:'';
         let text = $(this).find('text').text();
-    annotations.push(`<p><em>${text}</em><br><small>(${fileName})</small></p>`);
+    annotations.push(`<p><em>“${text}”</em></p>`);
     });
     annotationsWrapper.html(`
     <h2>${title} - <em>${author}</em></h2>${annotations.join('')}
