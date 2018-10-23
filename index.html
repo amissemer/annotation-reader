@@ -10,44 +10,13 @@
     <header>
       <h1>Déposer le fichier d'annotation...</h1>
     </header>
-<style>
-#holder { border: 10px dashed #ccc; width: 90%; height: 500px; margin: 20px auto;}
-#holder.hover { border: 10px dashed #333; }
-</style>
 <article>
   <div id="holder"></div> 
+  <div id="annotations-wrapper"></div>
 </article>
-<script>
-var holder = document.getElementById('holder'),
-    state = document.getElementById('status');
- 
-holder.ondragover = function () { this.className = 'hover'; return false; };
-holder.ondragend = function () { this.className = ''; return false; };
-holder.ondrop = function (e) {
-  this.className = '';
-  e.preventDefault();
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="script.js">
 
-  var file = e.dataTransfer.files[0],
-      reader = new FileReader();
-  reader.onload = function (event) {
-    console.log(event.target);
-    let contentBody = event.target.result;
-    console.log("contentBody",contentBody);
-    let regex = /<text>(.*?)<\/text>/g;
-    let match;
-    const annotations = [];
-    while ( (match = regex.exec(contentBody)) !== null) {
-      console.log("match",match);
-      annotations.push(match[1]);
-    }
-    
-    holder.innerHTML = annotations.map(a=>`<p>${a}</p>`).join('');
-  };
-  console.log(file);
-  reader.readAsText(file);
-
-  return false;
-};
 </script>
 </section>
 </body>
